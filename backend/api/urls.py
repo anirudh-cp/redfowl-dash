@@ -8,8 +8,10 @@ urlpatterns = [
     path('user/login', ObtainAuthTokenView.as_view()),
     path('user/register', registration_view), 
       
-    path('user/<uid>', UserActions.as_view()),
+    path('user/<uuid>', UserActions.as_view()),
     path('user', UserAll.as_view()),
+    path('user/simple', UserSimple.as_view()),
+    
     
 ]
 

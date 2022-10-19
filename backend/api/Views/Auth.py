@@ -37,6 +37,7 @@ def registration_view(request):
             data['response'] = 'Successfully registered new user.'
             data['email'] = account.email
             data['name'] = account.name
+            data['uuid'] = account.uuid
             token = Token.objects.get(user=account).key
             data['token'] = token          
         else:
@@ -87,6 +88,7 @@ class ObtainAuthTokenView(APIView):
                     token = Token.objects.create(user=account)
                 context['response'] = 'Successfully authenticated.'
                 context['email'] = account.email
+                context['uuid'] = account.uuid
                 context['name'] = account.name
                 context['token'] = token.key
                 return Response(context, status=status.HTTP_200_OK)

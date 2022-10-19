@@ -6,7 +6,13 @@ from django.contrib.auth.models import Group
 class userSerializer(serializers.ModelSerializer):
     class Meta:
         model=user
-        fields=('email', 'name', 'status', 'date_joined', 'is_superuser')
+        fields=('email', 'name', 'status', 'uuid', 'date_joined', 'is_superuser')
+
+
+class userSimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=user
+        fields=('name', 'uuid')
 
 
 class RegistrationUserSerializer(serializers.ModelSerializer):

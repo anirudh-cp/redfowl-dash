@@ -1,3 +1,4 @@
+from enum import unique
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group
 
@@ -5,6 +6,8 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
+
+import uuid
 
 
 class user_manager(BaseUserManager):
@@ -37,7 +40,8 @@ class user_manager(BaseUserManager):
 class user(AbstractBaseUser):
     # 320 Characters is the max len of a email.
     
-    email = models.EmailField(max_length=320, primary_key=True)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    email = models.EmailField(max_length=320, unique=True)
     name = models.CharField(max_length=128)
     passWrongCount = models.IntegerField(default=0)
     status = models.CharField(max_length=16, default="active")
