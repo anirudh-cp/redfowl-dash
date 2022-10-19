@@ -1,13 +1,13 @@
-from enum import unique
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.postgres.fields import ArrayField
+
+import uuid
 
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
-
-import uuid
 
 
 class user_manager(BaseUserManager):
@@ -57,7 +57,7 @@ class user(AbstractBaseUser):
     objects = user_manager()
 
     def __str__(self):
-        return self.email
+        return self.uuid
     
     # For checking permissions. to keep it simple all STAFF have ALL permissons
     def has_perm(self, perm, obj=None):
@@ -74,3 +74,15 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
 
+
+class minutes_of_meeting(models.Model):
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    date = models.DateField()
+    description = models.CharField(max_length=1024)
+    venue = models.CharField(max_legnth=256)
+    members = models.ManyToManyField(user)
+    additional_members = models.ArrayField(models.CharField(max_length=128), )
+    
+    def __str__(self):
+        return self.uuid
+    

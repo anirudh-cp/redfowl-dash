@@ -40,3 +40,9 @@ class RegistrationUserSerializer(serializers.ModelSerializer):
         userObj.save()
         
         return userObj
+
+
+class MOMSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=user
+        fields='__all__'

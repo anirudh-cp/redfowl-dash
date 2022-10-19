@@ -1,5 +1,5 @@
 from api.models import user
-from api.serializers import userSerializer
+from api.serializers import userSerializer, userSimpleSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view, permission_classes
@@ -7,7 +7,6 @@ from rest_framework import status, permissions
 
 import sys
 
-from backend.api.serializers import userSimpleSerializer
 
 sys.path.append('../..')
 

@@ -1,5 +1,7 @@
 from django.urls import path
 
+from backend.api.Views.MOM import MOM, MOMAll
+
 from .Views.Auth import *
 from .Views.Users import *
 
@@ -12,6 +14,7 @@ urlpatterns = [
     path('user', UserAll.as_view()),
     path('user/simple', UserSimple.as_view()),
     
-    
+    path('mom/<uuid>', MOM.as_view()),
+    path('mom', MOMAll.as_view()),
 ]
 
