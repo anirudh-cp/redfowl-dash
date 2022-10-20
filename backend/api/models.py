@@ -40,8 +40,8 @@ class user_manager(BaseUserManager):
 class user(AbstractBaseUser):
     # 320 Characters is the max len of a email.
     
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    email = models.EmailField(max_length=320, unique=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    email = models.EmailField(max_length=320,  unique=True)
     name = models.CharField(max_length=128)
     passWrongCount = models.IntegerField(default=0)
     status = models.CharField(max_length=16, default="active")
@@ -79,9 +79,9 @@ class minutes_of_meeting(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     date = models.DateField()
     description = models.CharField(max_length=1024)
-    venue = models.CharField(max_legnth=256)
+    venue = models.CharField(max_length=256)
     members = models.ManyToManyField(user)
-    additional_members = models.ArrayField(models.CharField(max_length=128), )
+    additional_members = ArrayField(models.CharField(max_length=128), )
     
     def __str__(self):
         return self.uuid
