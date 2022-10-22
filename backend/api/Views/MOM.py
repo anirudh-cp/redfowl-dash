@@ -1,3 +1,4 @@
+from pstats import Stats
 from api.models import minutes_of_meeting
 from api.serializers import MOMSerializer
 from rest_framework.response import Response
@@ -25,7 +26,7 @@ class MOM(APIView):
     
 
     def put(self, request, uuid, *args, **kwargs):
-        ''' Create/Update the record with given data. '''
+        ''' Update the record with given data. '''
         
         data = request.data
         if minutes_of_meeting.objects.filter(uuid=uuid).exists():
@@ -37,12 +38,7 @@ class MOM(APIView):
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
-            serializer = MOMSerializer(data=data)
-            if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+           return Response('', status=status.HTTP_404_NOT_FOUND)
     
     
     def delete(self, request, uuid, *args, **kwargs):
@@ -65,3 +61,14 @@ class MOMAll(APIView):
             
         return Response("", status=status.HTTP_404_NOT_FOUND)
     
+    
+    def put(self, request, *args, **kwargs):
+        ''' Create the record with given data. '''
+        
+        data = request.data
+        serializer = MOMSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

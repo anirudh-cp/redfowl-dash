@@ -12,7 +12,7 @@ class userSerializer(serializers.ModelSerializer):
 class userSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model=user
-        fields=('name', 'uuid')
+        fields=('email', 'name', 'uuid')
 
 
 class RegistrationUserSerializer(serializers.ModelSerializer):
@@ -44,5 +44,5 @@ class RegistrationUserSerializer(serializers.ModelSerializer):
 
 class MOMSerializer(serializers.ModelSerializer):
     class Meta:
-        model=user
+        model=minutes_of_meeting
         fields='__all__'

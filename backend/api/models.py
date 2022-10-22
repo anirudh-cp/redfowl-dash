@@ -79,9 +79,9 @@ class minutes_of_meeting(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     date = models.DateField()
     description = models.CharField(max_length=1024)
-    venue = models.CharField(max_length=256)
+    venue = models.CharField(max_length=256, blank=True, null=True)
     members = models.ManyToManyField(user)
-    additional_members = ArrayField(models.CharField(max_length=128), )
+    additional_members = ArrayField(models.CharField(max_length=128), blank=True, null=True)
     
     def __str__(self):
         return self.uuid
