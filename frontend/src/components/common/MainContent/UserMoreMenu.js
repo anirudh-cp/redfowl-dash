@@ -4,11 +4,12 @@ import { Menu, MenuItem, IconButton, ListItemIcon, ListItemText } from '@mui/mat
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import DownloadIcon from '@mui/icons-material/Download';
 
 
 // ----------------------------------------------------------------------
 
-export default function UserMoreMenu({ index, onDelete, onEdit }) {
+export default function UserMoreMenu({ index, onDelete, onEdit, onDownload }) {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -30,7 +31,7 @@ export default function UserMoreMenu({ index, onDelete, onEdit }) {
       >
         <MenuItem sx={{ color: 'text.secondary' }} onClick={onDelete}>
           <ListItemIcon>
-            <DeleteIcon/>
+            <DeleteIcon />
           </ListItemIcon>
           <ListItemText primary="Delete" primaryTypographyProps={{ variant: 'body2' }} />
         </MenuItem>
@@ -41,6 +42,16 @@ export default function UserMoreMenu({ index, onDelete, onEdit }) {
           </ListItemIcon>
           <ListItemText primary="Edit" primaryTypographyProps={{ variant: 'body2' }} />
         </MenuItem>
+
+        {onDownload !== undefined &&
+          <MenuItem sx={{ color: 'text.secondary' }} onClick={onEdit}>
+            <ListItemIcon>
+              <DownloadIcon />
+            </ListItemIcon>
+            <ListItemText primary="Download" primaryTypographyProps={{ variant: 'body2' }} />
+          </MenuItem>
+        }
+
       </Menu>
     </>
   );

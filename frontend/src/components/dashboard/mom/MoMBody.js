@@ -68,7 +68,8 @@ const MoMBody = ({ memberList, filteredUsers, selected, handleDelete, handleEdit
               <TableCell align="right" onClick={(e) => { e.stopPropagation(); }}>
                 <UserMoreMenu index={uuid}
                   onDelete={() => { handleDeleteClick(uuid); }}
-                  onEdit={() => { handleEditClick(uuid); setCurrentRecord(row); console.log(row) }} />
+                  onEdit={() => { handleEditClick(uuid); setCurrentRecord(row); console.log(row) }}
+                  onDownload={() => {console.log('download record')}} />
               </TableCell>
             </TableRow>
 
