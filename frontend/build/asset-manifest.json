@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3e537cea.css",
+    "main.js": "/static/js/main.69bd4379.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/crane.jpg": "/static/media/crane.8dec33b9018fc704187b.jpg",
+    "static/media/background.png": "/static/media/background.a456887d94ad4a692f68.png",
+    "index.html": "/index.html",
+    "main.3e537cea.css.map": "/static/css/main.3e537cea.css.map",
+    "main.69bd4379.js.map": "/static/js/main.69bd4379.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3e537cea.css",
+    "static/js/main.69bd4379.js"
+  ]
+}
