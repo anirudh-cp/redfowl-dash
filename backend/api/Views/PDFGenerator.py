@@ -103,7 +103,7 @@ class ReportGenerator:
                  Spacer(1, 2.5*cm),
                  Paragraph(members, self.body_text),
                  Spacer(1, 1*cm),
-                 Paragraph(content['description'], self.body_text),
+                 Paragraph(content['description'].replace('\n','<br />\n'), self.body_text),
                  Spacer(1, 1.5*cm),
                  Paragraph(salutation, self.body_text),
                  Spacer(1, 2.5*cm),
