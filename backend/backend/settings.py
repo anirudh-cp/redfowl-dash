@@ -37,6 +37,8 @@ DEBUG = str(os.environ.get('DEBUG')) == "1"
 
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = ['https://redfowl-dash.up.railway.app/','https://*.127.0.0.1']
+
 CORS_ORIGIN_ALLOW_ALL = True
 
 
