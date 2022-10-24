@@ -44,7 +44,7 @@ class API {
   async addMoM(token, body) {
 
     try {
-      const response = await axios.put('/api/mom/',
+      const response = await axios.put('/api/mom',
       body,
       {
         headers: {
