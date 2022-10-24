@@ -19,7 +19,7 @@ import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 ENV_FILE_PATH = BASE_DIR / ".env"
 # ENV_FILE_PATH = Path(__file__).resolve().parent / ".env"
