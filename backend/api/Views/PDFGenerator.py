@@ -18,13 +18,13 @@ import os
 CURRENT_DIR = Path(__file__).resolve().parent
 
 pdfmetrics.registerFont(
-    TTFont('Calibri', os.path.join(CURRENT_DIR, r"assets\\Calibri.ttf")))
+    TTFont('Calibri', os.path.join(CURRENT_DIR, "assets\\Calibri.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-bold', os.path.join(CURRENT_DIR, r"assets\\calibrib.ttf")))
+    TTFont('Calibri-bold', os.path.join(CURRENT_DIR, "assets\\calibrib.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-light', os.path.join(CURRENT_DIR, r"assets\\calibril.ttf")))
+    TTFont('Calibri-light', os.path.join(CURRENT_DIR, "assets\\calibril.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-italic', os.path.join(CURRENT_DIR, r"assets\\calibri_italic.ttf")))
+    TTFont('Calibri-italic', os.path.join(CURRENT_DIR, "assets\\calibri_italic.ttf")))
 
 
 registerFontFamily('Calibri', normal='Calibri', bold='Calibri-bold', italic='Calibri-italic')
@@ -115,7 +115,7 @@ class ReportGenerator:
     def header_footer(self, canvas: canvas.Canvas, doc: SimpleDocTemplate):
 
         # Header code
-        image_path = os.path.join(CURRENT_DIR, r"assets\\logo.png")
+        image_path = os.path.join(CURRENT_DIR, "assets\\logo.png")
         image = Image.open(image_path)
         im_width, im_height = image.size
         aspect_ratio = im_width / im_height
@@ -131,7 +131,7 @@ class ReportGenerator:
                          width=indented_width, height=indented_width/aspect_ratio)
 
         # Footer code
-        image_path = os.path.join(CURRENT_DIR, r"assets\\footerTemplate.png")
+        image_path = os.path.join(CURRENT_DIR, "assets\\footerTemplate.png")
         image = Image.open(image_path)
         im_width, im_height = image.size
         aspect_ratio = im_width / im_height
@@ -169,7 +169,7 @@ class ReportGenerator:
         canvas.restoreState()
 
         # Fowl logo code
-        image_path = os.path.join(CURRENT_DIR, r"assets\\background.png")
+        image_path = os.path.join(CURRENT_DIR, "assets\\background.png")
         image = Image.open(image_path)
         im_width, im_height = image.size
         aspect_ratio = im_width / im_height
