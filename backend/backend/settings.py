@@ -101,11 +101,16 @@ DB_IS_AVAIL = all([
     DB_PORT
 ])
 
-DB_URI = os.environ.get("MONGODB_URI")
-
+DATABASE_URL = os.environ.get("DATABASE_URL")
 DB_IGNORE_SSL = os.environ.get("DB_IGNORE_SSL") == "true"
 
-if DB_IS_AVAIL:
+import dj_database_url
+if DATABASE_URL:
+    
+    DATABASES = {
+        "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
+    }
+elif DB_IS_AVAIL:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",

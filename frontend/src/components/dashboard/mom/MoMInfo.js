@@ -12,7 +12,7 @@ const StudentInfo = ({ row, memberDict }) => {
             <Typography variant="h6" gutterBottom sx={{ color: "gray" }}> {venue} </Typography>
             <Divider />
 
-            <Typography variant="h6" gutterBottom sx={{ pt: 3, pb: 2 }}>
+            <Typography variant="h6" gutterBottom sx={{ pt: 3, pb: 2 }} style={{whiteSpace: "pre-line"}}>
                 {description}
             </Typography>
 
