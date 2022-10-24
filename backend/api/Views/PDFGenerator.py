@@ -1,7 +1,3 @@
-from ctypes import alignment
-from email.quoprimime import body_check
-from inspect import signature
-from tkinter import Canvas
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Frame, PageTemplate, BaseDocTemplate
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import cm
@@ -17,8 +13,6 @@ from reportlab.pdfbase.pdfmetrics import registerFontFamily
 from PIL import Image
 from pathlib import Path
 import os
-
-from requests import head
 
 
 CURRENT_DIR = Path(__file__).resolve().parent
