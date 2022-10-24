@@ -27,7 +27,7 @@ pdfmetrics.registerFont(
 pdfmetrics.registerFont(
     TTFont('Calibri-light', os.path.join(CURRENT_DIR, "assets/calibril.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-italic', os.path.join(CURRENT_DIR, "assets/calibri_italic.ttf")))
+    TTFont('Calibri-italic', os.path.join(CURRENT_DIR, "assets/calibri_italic.TTF")))
 
 
 registerFontFamily('Calibri', normal='Calibri', bold='Calibri-bold', italic='Calibri-italic')
