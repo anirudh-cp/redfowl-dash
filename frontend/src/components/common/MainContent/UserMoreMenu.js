@@ -44,7 +44,7 @@ export default function UserMoreMenu({ index, onDelete, onEdit, onDownload }) {
         </MenuItem>
 
         {onDownload !== undefined &&
-          <MenuItem sx={{ color: 'text.secondary' }} onClick={onEdit}>
+          <MenuItem sx={{ color: 'text.secondary' }} onClick={onDownload}>
             <ListItemIcon>
               <DownloadIcon />
             </ListItemIcon>

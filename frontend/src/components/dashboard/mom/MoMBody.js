@@ -9,7 +9,7 @@ import { useState, useEffect, Fragment } from 'react';
 import AlertBox from '../../common/AlertBox';
 
 
-const MoMBody = ({ memberList, filteredUsers, selected, handleDelete, handleEdit }) => {
+const MoMBody = ({ memberList, filteredUsers, selected, handleDelete, handleEdit, handleDownload }) => {
 
   const [currentRecord, setCurrentRecord] = useState([]);
   const [open, setOpen] = useState(false);
@@ -69,7 +69,7 @@ const MoMBody = ({ memberList, filteredUsers, selected, handleDelete, handleEdit
                 <UserMoreMenu index={uuid}
                   onDelete={() => { handleDeleteClick(uuid); }}
                   onEdit={() => { handleEditClick(uuid); setCurrentRecord(row); console.log(row) }}
-                  onDownload={() => {console.log('download record')}} />
+                  onDownload={() => { handleDownload(uuid); }} />
               </TableCell>
             </TableRow>
 

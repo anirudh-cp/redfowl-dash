@@ -1,3 +1,4 @@
 .gitignore merge=ours
 frontend\package.json merge=ours
 backend\backend\settings.py merge=ours
+requirements.txt merge=ours

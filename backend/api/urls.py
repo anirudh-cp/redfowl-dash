@@ -3,6 +3,7 @@ from django.urls import path
 from .Views.Auth import *
 from .Views.Users import *
 from .Views.MOM import *
+from .Views.Templates import *
 
 
 urlpatterns = [
@@ -15,5 +16,7 @@ urlpatterns = [
     
     path('mom/<uuid:uuid>', MOM.as_view()),
     path('mom', MOMAll.as_view()),
+    
+    path('actions/<resource>/<uuid:uuid>', Templates.as_view())
 ]
 

@@ -11,6 +11,7 @@ import MoMAdd from './MoMAdd';
 import TransitionsModal from '../../common/Modal';
 
 import useMoM from '../../../utils/MoM';
+import useTemplate from '../../../utils/Templates';
 
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
@@ -69,6 +70,7 @@ function applySortFilter(array, comparator, query) {
 export default function MoMMain({ memberList }) {
 
   const { getMoM, loading, putMoM, addMoM, addLoading, deleteMoM, deleteLoading } = useMoM();
+  const { downloadFile, downloadLoading } = useTemplate()
 
   let USERLIST = useRef([]);
   let RecordExist = useRef(false);
@@ -190,6 +192,23 @@ export default function MoMMain({ memberList }) {
     console.log(data);
   }
 
+  const handleDownload = async (uuid) => {
+    console.log("Download MoM ");
+    const response = await downloadFile(uuid, 'mom');
+
+    if (response["code"] === 200) {
+      setInfo(true);
+      console.log("success")
+      setFilterName(0);
+      setMessage("Record downloaded successfully");
+    }
+    else {
+      setError(true);
+      setMessage("Error generating PDF")
+    }
+
+  }
+
 
   return (
     <Box sx={{ width: "100%", height: "100%" }}>
@@ -209,6 +228,12 @@ export default function MoMMain({ memberList }) {
       <Snackbar open={addLoading} autoHideDuration={3000}>
         <Alert severity="info" sx={{ width: '100%' }}>
           Performing change...
+        </Alert>
+      </Snackbar>
+
+      <Snackbar open={downloadLoading} autoHideDuration={3000}>
+        <Alert severity="info" sx={{ width: '100%' }}>
+          Downloading PDF...
         </Alert>
       </Snackbar>
 
@@ -253,7 +278,8 @@ export default function MoMMain({ memberList }) {
                   <Fragment>
                     {RecordExist.current === true ?
                       <MoMBody filteredUsers={filteredUsers} selected={selected}
-                        handleDelete={handleDelete} handleEdit={handleEdit} memberList={memberList}/>
+                        handleDelete={handleDelete} handleEdit={handleEdit} 
+                        handleDownload={handleDownload} memberList={memberList}/>
                       : <NoRecord />}
                     {isUserNotFound === true && RecordExist.current === true && <RecordNotFound filterName={filterName} />}
                   </Fragment>
