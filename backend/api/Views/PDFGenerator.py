@@ -18,13 +18,13 @@ import os
 CURRENT_DIR = Path(__file__).resolve().parent
 
 pdfmetrics.registerFont(
-    TTFont('Calibri', os.path.join(CURRENT_DIR, r"assets\Calibri.ttf")))
+    TTFont('Calibri', os.path.join(CURRENT_DIR, r"assets\\Calibri.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-bold', os.path.join(CURRENT_DIR, r"assets\calibrib.ttf")))
+    TTFont('Calibri-bold', os.path.join(CURRENT_DIR, r"assets\\calibrib.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-light', os.path.join(CURRENT_DIR, r"assets\calibril.ttf")))
+    TTFont('Calibri-light', os.path.join(CURRENT_DIR, r"assets\\calibril.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-italic', os.path.join(CURRENT_DIR, r"assets\calibri_italic.ttf")))
+    TTFont('Calibri-italic', os.path.join(CURRENT_DIR, r"assets\\calibri_italic.ttf")))
 
 
 registerFontFamily('Calibri', normal='Calibri', bold='Calibri-bold', italic='Calibri-italic')
