@@ -1,4 +1,4 @@
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Frame, PageTemplate, BaseDocTemplate
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Frame, PageTemplate, BaseDocTemplate, Table
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import cm
 from reportlab.lib.pagesizes import A4
@@ -18,16 +18,16 @@ import os
 CURRENT_DIR = Path(__file__).resolve().parent
 
 pdfmetrics.registerFont(
-    TTFont('Calibri', os.path.join(CURRENT_DIR, r"assets\Calibri.ttf")))
+    TTFont('Sans', os.path.join(CURRENT_DIR, r"assets\Helvetica.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-bold', os.path.join(CURRENT_DIR, r"assets\calibrib.ttf")))
+    TTFont('Sans-bold', os.path.join(CURRENT_DIR, r"assets\Helvetica-bold.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-light', os.path.join(CURRENT_DIR, r"assets\calibril.ttf")))
+    TTFont('Sans-light', os.path.join(CURRENT_DIR, r"assets\Helvatica-light.ttf")))
 pdfmetrics.registerFont(
-    TTFont('Calibri-italic', os.path.join(CURRENT_DIR, r"assets\calibri_italic.ttf")))
+    TTFont('Sans-italic', os.path.join(CURRENT_DIR, r"assets\Helvetica-Oblique.ttf")))
 
 
-registerFontFamily('Calibri', normal='Calibri', bold='Calibri-bold', italic='Calibri-italic')
+registerFontFamily('Sans', normal='Sans', bold='Sans-bold', italic='Sans-italic')
 
 
 class ReportGenerator:
@@ -39,35 +39,35 @@ class ReportGenerator:
 
         self.phone_num_style = ParagraphStyle('phone_num_style',
                                               fontSize=10,
-                                              fontName='Calibri',
+                                              fontName='Sans',
                                               parent=self.sampleStyles['Normal'],
                                               textColor=black)
 
         self.footer_white = ParagraphStyle('footer_white',
                                            fontSize=10,
-                                           fontName='Calibri',
+                                           fontName='Sans',
                                            parent=self.sampleStyles['Normal'],
                                            textColor=white)
 
         self.body_text = ParagraphStyle('body_text',
                                         fontSize=15,
-                                        fontName='Calibri',
+                                        fontName='Sans',
                                         leading=18,
                                         parent=self.sampleStyles['Normal'])
         
         self.body_text_bold = ParagraphStyle('body_text_bold',
                                         fontSize=15,
-                                        fontName='Calibri-bold',
+                                        fontName='Sans-bold',
                                         parent=self.sampleStyles['Normal'])
         
         self.body_text_italic = ParagraphStyle('body_text_italic',
                                         fontSize=15,
-                                        fontName='Calibri-italic',
+                                        fontName='Sans-italic',
                                         parent=self.sampleStyles['Normal'])
 
         self.title_text = ParagraphStyle('title_text',
                                          fontSize=30,
-                                         fontName='Calibri-bold',
+                                         fontName='Sans-bold',
                                          alignment=TA_CENTER,
                                          parent=self.sampleStyles['Normal'])
 
@@ -84,7 +84,6 @@ class ReportGenerator:
 
     def build(self, content):
 
-        header = f'<para align="right"> {content["venue"]}, {content["date"]} </para>'
         members = (f'Attended by {", ".join(x for x in content["members"])} '
                    f'and {", ".join(x for x in content["additional_members"])}')
 
@@ -93,8 +92,10 @@ class ReportGenerator:
         designation = 'Founder & CEO'
         
         validation_contact = 'For validating this certificate, you can reach us at <u> <a color="blue"> hr@redfowlinfotech.com</a> </u>'
-
-        story = [Paragraph(header, self.body_text),
+        date = content['date'].split('-')[2] + '-' + content['date'].split('-')[1] + '-' + content['date'].split('-')[0]
+        story = [
+                 Table([[Paragraph(content["venue"], self.body_text), Paragraph(f'<para align="right"> {date} </para>', self.body_text)]], 
+                       style=[('ALIGN', (1, 0), (-1,-1), 'RIGHT')] , colWidths='*'),
                  Spacer(1, 0.7*cm),
                  Paragraph(content['title'], self.title_text),
                  Spacer(1, 2.5*cm),
@@ -103,7 +104,7 @@ class ReportGenerator:
                  Paragraph(content['description'].replace('\n','<br />\n'), self.body_text),
                  Spacer(1, 1.5*cm),
                  Paragraph(salutation, self.body_text),
-                 Spacer(1, 2.5*cm),
+                 Spacer(1, 1.75*cm),
                  Paragraph(signature_byline, self.body_text_bold),
                  Spacer(1, 0.3*cm),
                  Paragraph(designation, self.body_text_italic),
